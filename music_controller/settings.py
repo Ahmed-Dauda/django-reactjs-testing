@@ -24,7 +24,7 @@ SECRET_KEY = 'whfxmu35o6%2)9z71og9*efq^7++so1%@i-nwekkj2d8&fi=$t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 import os
-DEBUG = False
+DEBUG = True
 # COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 ALLOWED_HOSTS = ["*"]
 
