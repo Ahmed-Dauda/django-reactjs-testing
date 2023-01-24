@@ -7,3 +7,4 @@ urlpatterns = [
     path('create', index),
     path('join/1', index)
 ]
+
