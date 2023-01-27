@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import HomePage from "./HomePage";
 
+import HomePage from "./Home";
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -11,6 +13,7 @@ export default class App extends Component {
     return (
       <div>
         <h1>testing api</h1>
+         <Home/>
         <HomePage />
       </div>
     );
