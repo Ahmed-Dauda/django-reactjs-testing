@@ -9,7 +9,7 @@ class MyComponent extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://api.example.com/items")
+    fetch("api/room")
       .then(res => res.json())
       .then(
         (result) => {
