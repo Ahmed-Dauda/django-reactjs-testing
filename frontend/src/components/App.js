@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import HomePage from "./HomePage";
 
-import HomePage from "./Home";
+import Home from "./Home";
 
 export default class App extends Component {
   constructor(props) {
