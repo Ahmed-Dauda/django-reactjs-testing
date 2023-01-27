@@ -24,7 +24,7 @@ SECRET_KEY = 'whfxmu35o6%2)9z71og9*efq^7++so1%@i-nwekkj2d8&fi=$t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 import os
-DEBUG = True
+DEBUG = False
 # COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 ALLOWED_HOSTS = ["*"]
 
@@ -80,12 +80,8 @@ WSGI_APPLICATION = 'music_controller.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# postgresql://postgres:FbXg6ufWGfVhdPlYXKz1@containers-us-west-154.railway.app:6279/railway
+
 
 
 # Password validation
@@ -128,9 +124,11 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STATIC_URL = '/static/'
 
-# Update database configuration from $DATABASE_URL.
+
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
+# db_from_env = dj_database_url.config(default='postgre://...')
+DATABASES = { 'default': dj_database_url.config() }
 DATABASES['default'].update(db_from_env)
 
 # Simplified static file serving.
