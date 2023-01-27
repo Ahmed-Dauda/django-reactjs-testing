@@ -19,6 +19,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'whfxmu35o6%2)9z71og9*efq^7++so1%@i-nwekkj2d8&fi=$t'
 
@@ -26,9 +28,9 @@ SECRET_KEY = 'whfxmu35o6%2)9z71og9*efq^7++so1%@i-nwekkj2d8&fi=$t'
 import os
 DEBUG = False
 # CSRF_TRUSTED_ORIGINS = ['https://*.yourdomain.com']
-CSRF_TRUSTED_ORIGINS = ["https://web-production-56ea.up.railway.app/"]
+CSRF_TRUSTED_ORIGINS = ["https://web-production-56ea.up.railway.app"]
 # COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["https://web-production-56ea.up.railway.app"]
 
 
 # Application definition
