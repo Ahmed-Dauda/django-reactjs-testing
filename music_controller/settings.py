@@ -25,14 +25,15 @@ SECRET_KEY = 'whfxmu35o6%2)9z71og9*efq^7++so1%@i-nwekkj2d8&fi=$t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 import os
-DEBUG = False
-# CSRF_TRUSTED_ORIGINS = ['https://*.yourdomain.com']
-CSRF_TRUSTED_ORIGINS = ["https://web-production-56ea.up.railway.app"]
+# DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+
+# CSRF_TRUSTED_ORIGINS = ["https://web-production-56ea.up.railway.app", "http://127.0.0.1:8000/api/room", "http://127.0.0.1:8000"]
 # COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 ALLOWED_HOSTS = ["*"]
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_SSL_REDIRECT = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -132,8 +133,16 @@ STATIC_URL = '/static/'
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 # db_from_env = dj_database_url.config(default='postgre://...')
+
 DATABASES = { 'default': dj_database_url.config() }
 DATABASES['default'].update(db_from_env)
+
+if db_from_env:
+    DATABASE_URL = 'postgresql://<postgresql>'
+else:
+    DATABASE_URL = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+
+DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
 
 # Simplified static file serving.
 # https://pypi.org/project/whitenoise/

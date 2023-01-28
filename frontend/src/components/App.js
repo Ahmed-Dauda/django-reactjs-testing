@@ -1,8 +1,16 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-import HomePage from "./HomePage";
+import {
 
-import Home from "./Home";
+  Routes,
+  Route,
+  Link,
+} from "react-router-dom";
+// import your route components too
+import HomePage from "./HomePage";
+import About from "./About";
+import Footer from "./Footer";
+
 
 export default class App extends Component {
   constructor(props) {
@@ -11,11 +19,17 @@ export default class App extends Component {
 
   render() {
     return (
+      <>
       <div>
         <h1>testing api222333</h1>
-         <Home/>
-        <HomePage />
+         <About/>
+       
+        < HomePage/>
+<br></br>
+        < Footer/>
       </div>
+   
+    </>
     );
   }
 }

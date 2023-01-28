@@ -1,52 +1,46 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
+import {useState, useEffect} from 'react'
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [],
-      loaded: false,
-      placeholder: "Loading"
-    };
-  }
+export default function HomePage() {
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [items, setItems] = useState([]);
 
-  componentDidMount() {
+  // Note: the empty deps array [] means
+  // this useEffect will run once
+  // similar to componentDidMount()
+  useEffect(() => {
     fetch("api/room")
-      .then(response => {
-        if (response.status > 400) {
-          return this.setState(() => {
-            return { placeholder: "Something went wrong!" };
-          });
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setItems(result);
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
         }
-        return response.json();
-      })
-      .then(data => {
-        this.setState(() => {
-          return {
-            data,
-            loaded: true
-          };
-        });
-      });
-  }
+      )
+  }, [])
 
-  render() {
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  } else {
     return (
       <ul>
-        {this.state.data.map(contact => {
-          return (
-            <li key={contact.id}>
-              {contact.name}
-            </li>
-          );
-        })}
+        {items.map(item => (
+          <li key={item.id}>
+            {item.name}
+          </li>
+        ))}
       </ul>
     );
   }
 }
-
-export default App;
-
-const container = document.getElementById("app");
-render(<App />, container);

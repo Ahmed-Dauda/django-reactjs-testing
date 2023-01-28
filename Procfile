@@ -1,4 +1,1 @@
-
-#web: python manage.py migrate && gunicorn music_controller.wsgi --log-file -
-
-web: python manage.py migrate && python manage.py collectstatic && gunicorn music_controller.wsgi
+web: python manage.py migrate && gunicorn music_controller.wsgi --log-file -
