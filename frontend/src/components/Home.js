@@ -49,3 +49,7 @@ class Home extends React.Component {
     }
   }
 }
+export default Home;
+
+const container = document.getElementById("app");
+render(<Home />, container);
