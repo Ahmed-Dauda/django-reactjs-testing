@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-import {
 
-  Routes,
-  Route,
-  Link,
-} from "react-router-dom";
+
+import { BrowserRouter as Router,Route, Redirect,Link,Switch } from "react-router-dom";
 // import your route components too
 import HomePage from "./HomePage";
 import About from "./About";
@@ -20,13 +17,21 @@ export default class App extends Component {
   render() {
     return (
       <>
+
       <div>
-        <h1>testing api222333</h1>
-         <About/>
-       
-        < HomePage/>
-<br></br>
-        < Footer/>
+      <Router>
+     
+      <Link to="/">Home Page</Link><br></br>
+      <Link to="/About">About Page</Link><br></br>
+      <Link to="/Footer">Footer</Link><br></br>
+
+          <Switch>
+            <Route exact path="/" component={HomePage}></Route>
+            <Route path="/footer" component={Footer}></Route>
+            <Route path="/About" component={About}></Route>
+          </Switch>      
+      </Router>
+      
       </div>
    
     </>
@@ -35,4 +40,5 @@ export default class App extends Component {
 }
 
 const appDiv = document.getElementById("app");
+
 render(<App />, appDiv);

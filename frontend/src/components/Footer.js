@@ -3,6 +3,8 @@ import { render } from "react-dom";
 
 export default function Footer() {
     return (
-      <div>footer</div>
+      <div>
+        <input type="radio" value="password"></input>
+      </div>
     );
   }
