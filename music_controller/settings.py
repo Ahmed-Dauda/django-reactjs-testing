@@ -28,7 +28,7 @@ import os
 # DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-CSRF_TRUSTED_ORIGINS = ["web-production-31e7.up.railway.app/"]
+CSRF_TRUSTED_ORIGINS = ["https://web-production-31e7.up.railway.app/"]
 # COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 ALLOWED_HOSTS = ["*"]
 
