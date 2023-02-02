@@ -23,7 +23,7 @@ export default class App extends Component {
       
       <Link to="/">Home Page</Link><br></br>
       <Link to="/About">About Page</Link><br></br>
-      <Link to="/Footer">Footer</Link><br></br>
+      <Link to="/Footer">Footer page</Link><br></br>
       {/* <Link to="/Footer">Footer</Link><br></br> */}
 
           <Switch>
